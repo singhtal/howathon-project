@@ -6,11 +6,13 @@ class Myskills extends Component {
     constructor(props){
         super(props);
         this.state = {
-            fetchUser: []
+            fetchUser: [],
+            user: this.props.name
         }
     }
     componentDidMount() {
         var name = this.props.name;
+        // this.setState({user: name});
         axios.get(`http://localhost:4000/mentor/mydata?name=${name}`)
         .then( (response) => {
             console.log("response", response);
@@ -30,7 +32,7 @@ class Myskills extends Component {
         var listItems;
         if(this.state.fetchUser.length > 0) {
             var listItems = this.state.fetchUser[0].skills.map((item) =>
-                <tr>
+                <tr key={item.skillname}>
                     <td>{item.skillname}</td>
                     <td>{item.peopleMentored.length}</td>
                     <td>{eval(item.ratingsReceived .join('+'))/item.ratingsReceived.length}</td>

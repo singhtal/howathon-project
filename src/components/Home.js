@@ -27,6 +27,11 @@ class Home extends Component {
         );
     }
 
+    logout = () => {
+        document.cookie = 'loggedUser' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        this.setState({'loggedin': false});
+    }
+
     render() {
         let user = this.getCookie('loggedUser');
         if (this.state.loggedin === false) {
@@ -44,14 +49,16 @@ class Home extends Component {
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                     <li><a href="#"><span className="glyphicon glyphicon-user"></span> {user}</a></li>
-                    <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                    <li onClick={this.logout}><a href="#"><span className="glyphicon glyphicon-log-in"></span> Logout</a></li>
                     </ul>
                 </div>
             </nav>
 
             <div className="container">
                 <h1>Welcome {user}</h1>
-                <Myskills name={user} />
+                { (user !== undefined) ?
+                    <Myskills name={user} /> : null
+                }
             </div>
         </div>
         );
