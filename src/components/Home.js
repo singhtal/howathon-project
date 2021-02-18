@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import Myskills from './Myskills';
 
 class Home extends Component {
 
@@ -34,22 +35,23 @@ class Home extends Component {
         return(
         <div>
             <nav className="navbar navbar-inverse">
-            <div className="container-fluid">
-                <div className="navbar-header">
-                <a className="navbar-brand" href="#">WeLearn</a>
+                <div className="container-fluid">
+                    <div className="navbar-header">
+                    <a className="navbar-brand" href="#">WeLearn</a>
+                    </div>
+                    <ul className="nav navbar-nav">
+                    <li className="active"><a href="#">Home</a></li>
+                    </ul>
+                    <ul className="nav navbar-nav navbar-right">
+                    <li><a href="#"><span className="glyphicon glyphicon-user"></span> {user}</a></li>
+                    <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                    </ul>
                 </div>
-                <ul className="nav navbar-nav">
-                <li className="active"><a href="#">Home</a></li>
-                </ul>
-                <ul className="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> {user}</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                </ul>
-            </div>
             </nav>
 
             <div className="container">
                 <h1>Login successful for {user}</h1>
+                <Myskills name={user} />
             </div>
         </div>
         );

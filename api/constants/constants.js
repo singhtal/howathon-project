@@ -3,7 +3,8 @@ const RouteNames = {
     login: '/login',
     data: '/allData',
     validate: '/validateUsername',
-    mentor: 'mentor',
+    mentor: '/mentor',
+    mydata: '/mydata',
 };
 
 module.exports = RouteNames;
