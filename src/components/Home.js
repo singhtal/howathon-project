@@ -50,7 +50,7 @@ class Home extends Component {
             </nav>
 
             <div className="container">
-                <h1>Login successful for {user}</h1>
+                <h1>Welcome {user}</h1>
                 <Myskills name={user} />
             </div>
         </div>
