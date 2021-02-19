@@ -1,7 +1,7 @@
 import axios from "axios";
 export  const GetMentor = data => {
     axios
-      .get("http://localhost:4000/mentor/mydata")
+      .get("http://localhost:4000/mentor/update")
       .then((response) => {
         console.log("response", response);
         this.setState({

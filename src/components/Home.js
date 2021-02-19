@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import Myskills from './Myskills';
+import Header from '../layout/Header';
+import Sidebar from '../layout/Sidebar';
 
 class Home extends Component {
   constructor(props) {
     super();
-    this.state = {
-      loggedin: true,
-    };
   }
 
   getCookie = (name) => {
@@ -24,57 +23,14 @@ class Home extends Component {
       500
     );
   }
-  logout = () => {
-    document.cookie = 'loggedUser' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    this.setState({'loggedin': false});
-}
-
-
   render() {
     let user = this.getCookie("loggedUser");
-    if (this.state.loggedin === false) {
-      return <Redirect to="/login" />;
-    }
     return (
       <div>
-        <nav className="navbar">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">
-                WeLearn
-              </a>
-            </div>
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-                <a href="#">
-                  <span class="glyphicon glyphicon-user"></span> {user}
-                </a>
-              </li>
-              <li onClick={this.logout}><a href="#"><span className="glyphicon glyphicon-log-in"></span> Logout</a></li>
-            </ul>
-          </div>
-        </nav>
+        <Header />
         <div className="container-fluid">
           <div className="row">
-            <div className="sidebar">
-              <ul>
-                <li className="active">
-                  <a href="">Dashboard</a>
-                </li>
-                <li>
-                  <a href="">Become a mentor</a>
-                </li>
-                <li>
-                  <a href="">Links</a>
-                </li>
-                <li>
-                  <a href="">Links</a>
-                </li>
-                <li>
-                  <a href="">Links</a>
-                </li>
-              </ul>
-            </div>
+            <Sidebar />
             <div className="module-wrapper">
               <div className="dashboard">
               { (user !== undefined) ?

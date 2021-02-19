@@ -1,27 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import {CreateMentor} from '../services/MentorService';
+import Header from '../layout/Header';
+import Sidebar from '../layout/Sidebar';
 
-class Home extends Component {
+class Mentor extends Component {
   constructor(props) {
     super();
-    this.state = {
-      loggedin: true,
-    };
-  }
-
-  getCookie = (name) => {
-    var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-    if (match) return match[2];
-  };
-  componentDidMount() {
-    setTimeout(
-      function() {
-        let user = this.getCookie("loggedUser") !== undefined ? true : false;
-        this.setState({ loggedin: user });
-      }.bind(this),
-      500
-    );
   }
   handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -51,70 +36,16 @@ class Home extends Component {
     };
 
   render() {
-    let user = this.getCookie("loggedUser");
-    if (this.state.loggedin === false) {
-      return <Redirect to="/login" />;
-    }
     return (
       <div>
-        <nav className="navbar">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">
-                WeLearn
-              </a>
-            </div>
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-                <a href="#">
-                  <span className="glyphicon glyphicon-user"></span> {user}
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span className="glyphicon glyphicon-log-in"></span> Logout
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <Header />
         <div className="container-fluid">
-          <div className="row">
-            <div className="sidebar">
-              <ul>
-                <li className="active">
-                  <a href="">Dashboard</a>
-                </li>
-                <li>
-                  <a href="">Become a mentor</a>
-                </li>
-                <li>
-                  <a href="">Links</a>
-                </li>
-                <li>
-                  <a href="">Links</a>
-                </li>
-                <li>
-                  <a href="">Links</a>
-                </li>
-              </ul>
-            </div>
+          <div className="row">            
+            <Sidebar />
             <div className="module-wrapper">
               <div className="mentor-form">
-                <h2>Form</h2>
+                <h2>Update Skills</h2>
                 <form onSubmit={this.handleSubmit} method="post">
-                  <div className="form-group">
-                    <label htmlFor="slots" className="form-label">
-                      Total slots
-                    </label>
-                    <input
-                      type="text"
-                      onChange={(e) => this.handleInput(e)}
-                      className="form-control"
-                      name="slots"
-                      id="slots"
-                    />
-                  </div>
                   <div className="form-group">
                     <label htmlFor="skills" className="form-label">
                       Search skills
@@ -152,34 +83,17 @@ class Home extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="desciption" className="form-label">
-                      Register as
-                    </label>
                     <div className="form-check">
                       <input
                         onChange={(e) => this.handleInput(e)}
                         className="form-check-input"
-                        type="radio"
+                        type="Checkbox"
                         name="registeras"
                         id="mentor"
                         value="Mentor"
                       />
                       <label className="form-check-label" htmlFor="mentor">
-                        Mentor
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        onChange={(e) => this.handleInput(e)}
-                        className="form-check-input"
-                        type="radio"
-                        name="registeras"
-                        id="mentee"
-                        value="Mentee"
-                        checked
-                      />
-                      <label className="form-check-label" htmlFor="mentee">
-                        Mentee
+                      I want to volunteer
                       </label>
                     </div>
                   </div>
@@ -196,4 +110,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Mentor;
