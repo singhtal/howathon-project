@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import MentorService from '../services/MentorService';
+import {CreateMentor} from '../services/MentorService';
 
 class Home extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Home extends Component {
         certifications: this.state.certifications,
         registeras: this.state.registeras,
       }
-      const result = await MentorService(data);
+      const result = await CreateMentor(data);
       if (result !== 200) {
         this.setState({
           error: true,
@@ -102,7 +102,7 @@ class Home extends Component {
             <div className="module-wrapper">
               <div className="mentor-form">
                 <h2>Form</h2>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} method="post">
                   <div className="form-group">
                     <label htmlFor="slots" className="form-label">
                       Total slots

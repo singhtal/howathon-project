@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import Myskills from './Myskills';
 
 class Home extends Component {
   constructor(props) {
@@ -23,6 +24,11 @@ class Home extends Component {
       500
     );
   }
+  logout = () => {
+    document.cookie = 'loggedUser' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    this.setState({'loggedin': false});
+}
+
 
   render() {
     let user = this.getCookie("loggedUser");
@@ -44,11 +50,7 @@ class Home extends Component {
                   <span class="glyphicon glyphicon-user"></span> {user}
                 </a>
               </li>
-              <li>
-                <a href="#">
-                  <span class="glyphicon glyphicon-log-in"></span> Logout
-                </a>
-              </li>
+              <li onClick={this.logout}><a href="#"><span className="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
           </div>
         </nav>
@@ -75,6 +77,9 @@ class Home extends Component {
             </div>
             <div className="module-wrapper">
               <div className="dashboard">
+              { (user !== undefined) ?
+                    <Myskills name={user} /> : null
+                }
                 <h2>Mentees</h2>
                 <div className="blocks row">
                   <div class="card">
