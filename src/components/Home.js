@@ -38,10 +38,10 @@ class Home extends Component {
                 }
                 <h2>Mentees</h2>
                 <div className="blocks row">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">
@@ -58,10 +58,10 @@ class Home extends Component {
                       <p>Last contacted : 2-feb-21</p>
                     </div>
                   </div>
-                  <div class="card expired">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card expired">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">
@@ -78,10 +78,10 @@ class Home extends Component {
                       <p>Last contacted : 2-feb-21</p>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">
@@ -101,10 +101,10 @@ class Home extends Component {
                 </div>
                 <h2>Mentors</h2>
                 <div className="blocks row">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">
@@ -121,10 +121,10 @@ class Home extends Component {
                       <p>Last contacted : 2-feb-21</p>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">
@@ -141,10 +141,10 @@ class Home extends Component {
                       <p>Last contacted : 2-feb-21</p>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">
@@ -164,10 +164,10 @@ class Home extends Component {
                 </div>
                 <h2>Skills</h2>
                 <div className="blocks row">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">
@@ -184,10 +184,10 @@ class Home extends Component {
                       <p>Last contacted : 2-feb-21</p>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">
@@ -204,10 +204,10 @@ class Home extends Component {
                       <p>Last contacted : 2-feb-21</p>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Mentee Name</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
+                  <div className="card">
+                    <div className="card-body">
+                      <h5 className="card-title">Mentee Name</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
                         Areas: Life coach
                       </h6>
                       <div className="card-text">

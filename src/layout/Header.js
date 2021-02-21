@@ -44,7 +44,7 @@ class Header extends Component {
           <ul className="nav navbar-nav navbar-right">
             <li>
               <a href="#">
-                <span class="glyphicon glyphicon-user"></span> {user}
+                <span className="glyphicon glyphicon-user"></span> {user}
               </a>
             </li>
             <li onClick={this.logout}>
