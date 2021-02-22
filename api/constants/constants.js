@@ -5,6 +5,7 @@ const RouteNames = {
     validate: '/validateUsername',
     mentor: '/mentor',
     mydata: '/mydata',
+    skillUpdate: 'skillupdate',
 };
 
 module.exports = RouteNames;
