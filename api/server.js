@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 const config = require('./DB.js');
 const registrationRoutes = require('./route');
 const mentorRoutes = require('./mentorRoute');
+const SkillUpdateRoutes = require('./routes/skillUpdateRoute');
+const SkillsRoutes = require('./routes/skillRoute');
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true, useUnifiedTopology: true }).then(
@@ -19,5 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/registration", registrationRoutes);
 app.use("/mentor", mentorRoutes);
+app.use("/updateskill", SkillUpdateRoutes);
+app.use("/skills", SkillsRoutes);
 
 module.exports = app

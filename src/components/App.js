@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-d
 import Login from './Login';
 import Registration from './Registration';
 import Home from './Home';
+import Mentor from './Mentor';
 
 class App extends Component {
 	render() {
@@ -13,6 +14,7 @@ class App extends Component {
 						<Route exact path="/register" component={Registration} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/home" component={Home} />
+						<Route exact path="/mentor" component={Mentor} />
 						<Redirect from="/" to="login" />
 					</Switch>
 					</div>
