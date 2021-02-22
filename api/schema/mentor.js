@@ -26,7 +26,12 @@ let MentorSchema = new Schema({
     skills: [
         {
             skillname : {  type: String },
-            peopleMentored: [{ type: String }], //user id of mentees
+            peopleMentored: [
+                {
+                    name: {type: String},
+                    status: {type: String},
+                }
+            ], //user id of mentees
             ratingsReceived: [{ type: Number }],
             status: { String }, //active or ended
         }

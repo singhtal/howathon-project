@@ -25,19 +25,32 @@ class Myskills extends Component {
         .catch( (error) => {
             console.log(error);
         });  
-
-       
+    }
+    unregister(event) {
+        let obj = event.target;
+        if(obj.getAttribute('data-status') > 0) {
+            alert('cannot unregister as you have active mentees');
+        }
     }
     render() {
         var listItems;
         if(this.state.fetchUser.length > 0) {
-            var listItems = this.state.fetchUser[0].skills.map((item) =>
+            let active = 0;
+            let self = this;
+            var listItems = this.state.fetchUser[0].skills.map((item) => {
+                
+               let active = item.peopleMentored.filter(elem => elem.status === 'active').length;
+                
+                return (
                 <tr key={item.skillname}>
                     <td>{item.skillname}</td>
-                    <td>{item.peopleMentored.length}</td>
+                    <td>{item.peopleMentored.length} ({active} active)</td>
                     <td>{eval(item.ratingsReceived .join('+'))/item.ratingsReceived.length}</td>
-                    <td>unregister</td>
-                </tr>
+                    <td><a href="#" data-skill={item.skillname} 
+                        data-status={active}
+                    onClick={(event) => this.unregister(event)}>unregister</a></td>
+                </tr> )
+            }
             );            
         }
         
