@@ -10,7 +10,19 @@ class Mentor extends Component {
     super();
     this.state = "";
   }
+
+  getCookie = (name) => {
+    var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    if (match) return match[2];
+  };
   componentDidMount() {
+    setTimeout(
+      function() {
+        let user = this.getCookie("loggedUser") !== undefined ? true : false;
+        this.setState({ username: user });
+      }.bind(this),
+      500
+    );
     GetSkills().then((skills) => {
       this.setState({ fetchedSkills: skills.data });
     });
@@ -23,7 +35,7 @@ class Mentor extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      username: "piyush",
+      username: this.state.username,
       skills: this.state.skills,
       desciption: this.state.desciption,
       certifications: this.state.certifications,
