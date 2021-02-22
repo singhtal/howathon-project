@@ -16,6 +16,11 @@ class Mentor extends Component {
     });
   }
 
+  getCookie = (name) => {
+    var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    if (match) return match[2];
+  }
+
   handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state);
@@ -23,7 +28,7 @@ class Mentor extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      username: "piyush",
+      username: this.getCookie('loggedUser'),
       skills: this.state.skills,
       desciption: this.state.desciption,
       certifications: this.state.certifications,
@@ -40,7 +45,7 @@ class Mentor extends Component {
         register: true,
         error: false,
       });
-    document.cookie = `loggedUser=${this.state.user_name};max-age=604800;`;
+    //document.cookie = `loggedUser=${this.state.user_name};max-age=604800;`;
   };
   handleOnSearch = (string, results) => {
     console.log(string, results,'search')    
