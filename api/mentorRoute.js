@@ -18,4 +18,19 @@ MentorRoutes.route(RouteNames.mydata).get(function(req, res) {
     });
 });
 
+MentorRoutes.route(RouteNames.unregister).get(function(req, res) {
+    //res.send('helli');
+    let name = req.query.name;
+    let skill = req.query.skill;
+
+    Mentor.update(
+        {'username': name},
+        {$pull:{"skills":{"skillname":skill}}},
+        {new:true},
+        function (err, result) {
+            if (err) throw err;
+            res.status(200).send('success')
+        });
+});
+
 module.exports = MentorRoutes;
