@@ -27,13 +27,14 @@ MentorRoutes.route(RouteNames.unregister).get(function(req, res) {
     let skill = req.query.skill;
 
     var query = {username: name, skills: skill};
-    mentorskill.remove(query,function(err, result) {
-        if (err) res.send(err);
-        // let query2 = {MentorID: name, skillID: skill};
-        // Relation.remove(query, function(err1,result1) {
-        // if (err1) res.send(err1);
+    mentorskill.deleteOne(query,function(err, result) {
+        if (err) console.log(err);
+        let query2 = {MentorID: name, skillID: skill};
+        Relation.deleteOne(query2, function(err1,result1) {
+        if (err1) res.send(err1);
+        console.log(result1);
             res.status(200).send('success');
-        // })
+         })
     });
 
 });
