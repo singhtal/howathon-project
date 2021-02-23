@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { UpdateSkill, GetSkills } from "../services/skillupdate";
 import Header from "../layout/Header";
 import Sidebar from "../layout/Sidebar";
-import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 class Mentor extends Component {
   constructor(props) {
@@ -28,9 +28,13 @@ class Mentor extends Component {
     });
   }
 
+  getCookie = (name) => {
+    var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    if (match) return match[2];
+  };
+
   handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   };
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,18 +56,15 @@ class Mentor extends Component {
         register: true,
         error: false,
       });
-    document.cookie = `loggedUser=${this.state.user_name};max-age=604800;`;
+    //document.cookie = `loggedUser=${this.state.user_name};max-age=604800;`;
   };
   handleOnSearch = (string, results) => {
-    console.log(string, results,'search')    
-    this.setState({ "skills": string });
-  }
+    this.setState({ skills: string });
+  };
 
   handleOnSelect = (item) => {
-    // the item selected
-    console.log(item,'select')    
-    this.setState({ "skills": item.name });
-  }
+    this.setState({ skills: item.name });
+  };
   render() {
     return (
       <div>
@@ -79,16 +80,16 @@ class Mentor extends Component {
                     <label htmlFor="skills" className="form-label">
                       Search skills
                     </label>
-                    {this.state.fetchedSkills && 
+                    {this.state.fetchedSkills && (
                       <ReactSearchAutocomplete
-                      items={this.state.fetchedSkills}
-                      onSearch={this.handleOnSearch}
-                      onSelect={this.handleOnSelect}
-                      onFocus={this.handleOnFocus}
-                      showIcon={false}
-                      autoFocus
-                    />
-                    }
+                        items={this.state.fetchedSkills}
+                        onSearch={this.handleOnSearch}
+                        onSelect={this.handleOnSelect}
+                        onFocus={this.handleOnFocus}
+                        showIcon={false}
+                        autoFocus
+                      />
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="desciption" className="form-label">
