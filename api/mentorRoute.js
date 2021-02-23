@@ -1,6 +1,7 @@
 const express = require('express');
 const MentorRoutes = express.Router();
 let mentorskill = require("./schema/updateSkill");
+let skillCollection = require("./schema/skill");
 const bcrypt = require('bcryptjs');
 let Mentor = require('./schema/mentor');
 let Relation = require('./schema/relation');
@@ -8,6 +9,24 @@ let RouteNames = require("./constants/constants");
 
 //NOTE  Registration route
 // Get allData
+
+MentorRoutes.route(RouteNames.getSkill).get(function(req, res) {
+    skillCollection.find({name: {$regex: req.query.data, '$options' : 'i'}}, (err, data) => { 
+        if(err) { res.status(400).send("Error occured") }
+        let response = data.map(item => {
+            return item['_id']
+        });
+
+        mentorskill.find({ skills: { $in: response }}, (err1, data1) => {
+            if(err1) { res.status(400).send("Error occured") }
+            res.json(data1);
+        });
+
+        //res.json(response);
+
+    });
+});
+
 MentorRoutes.route(RouteNames.data).get(function(req, res) {
     Mentor.find((err, data) => err ? res.status(400).send("Error occured") : res.json(data));
 });

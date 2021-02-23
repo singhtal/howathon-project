@@ -4,6 +4,8 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import Myskills from './Myskills';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
+import Search from './Search';
+
 
 class Home extends Component {
   constructor(props) {
@@ -33,6 +35,8 @@ class Home extends Component {
             <Sidebar />
             <div className="module-wrapper">
               <div className="dashboard">
+              <Search />
+              
               { (user !== undefined) ?
                     <Myskills name={user} /> : null
                 }
