@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import LoginService from '../services/LoginService';
 import Message from '../elements/Message';
 import Error from '../elements/Error';
+import './login.scss';
+
 
 import {
   COMMON_FIELDS,
@@ -16,7 +18,7 @@ import {
 export default class Login extends Component {
   constructor(props) {
     super(props);
-
+    document.body.classList.add('loginPage');
     this.state = {
       user_name: '',
       password: '',

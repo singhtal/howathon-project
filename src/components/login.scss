@@ -1,0 +1,15 @@
+.Login, .Registration {
+    @media (min-width: 768px) {
+        margin: 50px;
+        display: inline-block;
+        float: right;
+        border: 1px solid #ddd;
+        padding: 30px 50px;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+}
+
+.loginPage {
+    background-image: url('https://www.publicissapient.com/content/dam/ps-rebrand/contact/contact_promo.jpg.transform/psimg-1280/image.jpg');
+}

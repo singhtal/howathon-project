@@ -10,6 +10,8 @@ const mentorRoutes = require('./mentorRoute');
 const SkillUpdateRoutes = require('./routes/skillUpdateRoute');
 const SkillsRoutes = require('./routes/skillRoute');
 const relationRoutes = require('./relationRoute');
+const ratingRoutes = require('./ratingRoute');
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true, useUnifiedTopology: true }).then(
@@ -25,6 +27,6 @@ app.use("/relation", relationRoutes);
 app.use("/mentor", mentorRoutes);
 app.use("/updateskill", SkillUpdateRoutes);
 app.use("/skills", SkillsRoutes);
-
+app.use("/rating", ratingRoutes);
 
 module.exports = app

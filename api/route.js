@@ -20,7 +20,6 @@ registrationRoutes.route(RouteNames.register).post(function(req, res) {
 registrationRoutes.route(RouteNames.login).post(function(req, res) {
     Registration.findOne({ user_name: req.body.user_name })
         .then(user => {
-            console.log("User from login", user)
             if (!user) res.sendStatus(204);
             else {
                 bcrypt.compare(req.body.password, user.password)

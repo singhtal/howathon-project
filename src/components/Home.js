@@ -10,6 +10,7 @@ import Search from './Search';
 class Home extends Component {
   constructor(props) {
     super();
+    document.body.classList.remove('loginPage');
   }
 
   getCookie = (name) => {

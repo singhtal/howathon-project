@@ -65,13 +65,16 @@ class Myskills extends Component {
                 console.log(item.fields[0].skillID);
                 let active = item.fields.filter(el => el.status === 'active').length;
                 let mentored = item.fields.filter(el => el.status === 'active');
-                console.log(mentored)
+                let ratings = item.fields.filter(el => (el.rating !== null && el.rating !== undefined));
+                let rate = ratings.map(a => a.rating);
+                let ratingAvg = rate.reduce((a, b) => (a + b)/rate.length, 0);
+                console.log(ratingAvg);
                 let mapMentored = mentored.map(el => el.MenteeID); 
                 return(
                     <tr>
                         <td>{item.fields[0].skillID}</td>
                         <td>{item.fields.length} ({active} active)</td>
-                        <td>Rating unavailable</td>
+                        <td>{ratingAvg}</td>
                         <td>{mapMentored.join(", ")}</td>
                         <td><a href="#" data-status={active} data-skill={item.fields[0].skillID}
                         onClick={(event) => this.unregister(event)}>unregister</a></td>

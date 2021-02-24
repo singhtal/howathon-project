@@ -4,6 +4,7 @@ let Relation = require('./schema/relation');
 let skills = require("./schema/skill");
 let RouteNames = require("./constants/constants");
 const config = require('./DB.js');
+let ratings = require("./schema/rating");
 
 
 //NOTE  Registration route
@@ -40,7 +41,35 @@ RelationRoutes.route(RouteNames.mydata).get(function(req, res) {
        }
     }
     ]).exec(function(err, results){
-            err ? res.status(400).send("Error occured") : res.json(results)
+            if(err) {
+                 res.status(400).send("Error occured")
+             }
+             var count1 = 0;
+             let matrix = [];
+
+            //  for(var i=0; i<results.length; i++){
+            //      element = results[i];
+             results.map((element, ind) => {
+                // RelationRoutes.route("/getRatings").get(function(req, res) {
+                var myitem = element['fields'].map(async (item, index) => {      
+                    let q =  ratings.find({ MentorID: item['MentorID'], MenteeID: item['MenteeID'], SkillID: item['skillID'] }, {Rating: 1} );
+                    await  q.exec(function(err1, property) {
+                        //if (err1) { res.send(err1) }
+                        item['rating'] = property[0] ? property[0]['Rating']: null;
+                        //console.log(item);
+                        matrix[ind] = [];
+                        console.log('running');
+                        console.log(ind, index, results.length, element['fields'].length);
+                        matrix[ind][index] = item;
+                        //console.log(matrix);
+                        if((ind == results.length - 1) && (index == element['fields'].length - 1)) {
+                            res.json(results);
+                            console.log(results);
+                        }
+                        return item;
+                    });
+                });
+              });
         })
     });
 

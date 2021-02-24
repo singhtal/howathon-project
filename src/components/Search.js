@@ -48,7 +48,7 @@ class Search extends Component {
 
         return (
             <div>
-                <div className="container">
+                <div>
                     <div className="row">
                     <div className="col-xs-6 search-container">
                     <form className="form-inline" onSubmit={this.submitHandler}>
@@ -63,7 +63,7 @@ class Search extends Component {
                       <button type="submit" className="btn btn-danger">Search</button>
                     </form>
                     <hr />
-                    <table class="table table-striped">
+                    <table className="table table-striped">
                     {mentorData.length ? 
                       <caption>We believe the below can help you</caption> : null
                     }
