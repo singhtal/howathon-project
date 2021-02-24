@@ -71,7 +71,7 @@ class Myskills extends Component {
                 console.log(ratingAvg);
                 let mapMentored = mentored.map(el => el.MenteeID); 
                 return(
-                    <tr>
+                    <tr key={item.fields[0].skillID}>
                         <td>{item.fields[0].skillID}</td>
                         <td>{item.fields.length} ({active} active)</td>
                         <td>{ratingAvg}</td>

@@ -36,7 +36,7 @@ class Home extends Component {
             <Sidebar />
             <div className="module-wrapper">
               <div className="dashboard">
-              <Search />
+              <Search name={user}/>
               
               { (user !== undefined) ?
                     <Myskills name={user} /> : null

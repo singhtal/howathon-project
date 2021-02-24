@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 let Mentor = require('./schema/mentor');
 let Relation = require('./schema/relation');
 let RouteNames = require("./constants/constants");
+let ratings = require("./schema/rating");
 
 //NOTE  Registration route
 // Get allData
@@ -17,12 +18,46 @@ MentorRoutes.route(RouteNames.getSkill).get(function(req, res) {
             return item['_id']
         });
 
+        var dataWithRating = [];
+
         mentorskill.find({ skills: { $in: response }}, (err1, data1) => {
             if(err1) { res.status(400).send("Error occured") }
-            res.json(data1);
-        });
+            //res.json(data1);
+            let count = 0;
+            // data1.foreach(element => { 
+                for(i=0; i<data1.length;i++){
+                   var element = data1[i];
+                   console.log(element.username); 
+                    (function defined_plus_call(element) {
+                    let q =  ratings.find({ MentorID: element.username,  SkillID: element.skills }, {Rating: 1} );
+                    q.exec(function(err1, property) {
+                        
+                        if(err1) {console.log(err1)}
+                        sum = 0;
+                        console.log('statts **');
+                        const ratingss = property.map(itm => itm.Rating);
+                         averageRating = ratingss.reduce(function (avg, value, _, { length }) {
+                            return avg + value / length;
+                        }, 0);
+                        var item = {};
+                        item = element.toObject();
+                        item['avgRating'] =  averageRating;
+                        dataWithRating.push(item);
+                        console.log(item);
+                        // console.log('inside', count, data1.length-1);
+                        if(count == data1.length-1) {
+                            res.send(dataWithRating);
+                        }
+                        count++;   
+                    });
 
-        //res.json(response);
+                    }(element));
+
+            }
+
+            // dataWithRating[dataWithRating.length-1]
+            // .then((ress) => { console.log(ress); return ress; })
+        });
 
     });
 });
@@ -41,7 +76,6 @@ MentorRoutes.route(RouteNames.mydata).get(function(req, res) {
 
 MentorRoutes.route(RouteNames.unregister).get(function(req, res) {
     //res.send('helli');
-    console.log('hi')
     let name = req.query.name;
     let skill = req.query.skill;
 
@@ -51,7 +85,6 @@ MentorRoutes.route(RouteNames.unregister).get(function(req, res) {
         let query2 = {MentorID: name, skillID: skill};
         Relation.deleteOne(query2, function(err1,result1) {
         if (err1) res.send(err1);
-        console.log(result1);
             res.status(200).send('success');
          })
     });

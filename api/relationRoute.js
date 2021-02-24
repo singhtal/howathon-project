@@ -63,8 +63,9 @@ RelationRoutes.route(RouteNames.mydata).get(function(req, res) {
                         matrix[ind][index] = item;
                         //console.log(matrix);
                         if((ind == results.length - 1) && (index == element['fields'].length - 1)) {
-                            res.json(results);
-                            console.log(results);
+                            setTimeout(function () {
+                                res.json(results);
+                            }, 200);
                         }
                         return item;
                     });

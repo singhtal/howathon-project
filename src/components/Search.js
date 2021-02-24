@@ -19,6 +19,7 @@ class Search extends Component {
     event.preventDefault();
     const data = {
       skillName: this.state.search,
+      name: this.props.name
     };
     // const searchResult = await searchService(data);
     searchService(data).then((item) => {
@@ -28,16 +29,14 @@ class Search extends Component {
     render() {
         let mentorData;
         let self = this;
-        console.log(this.state.result)
-        
             mentorData = 
             self.state.result.map((item) => {
             return (
-                <tr key={item._id}>
+                <tr key={item.username}>
                     <td><span class="glyphicon glyphicon-user"></span></td>
                     <td>{item.username}</td>
                     <td>{item.description ? item.description: 'Not provided'}</td>
-                    <td>Rating Not available</td>
+                    <td>{item.avgRating}</td>
                     <td><a href="#">View profile</a></td>
                     <td><a href="#">Chat <span class="glyphicon glyphicon-chat"></span></a></td>
                 </tr>
