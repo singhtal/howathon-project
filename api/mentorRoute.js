@@ -27,14 +27,12 @@ MentorRoutes.route(RouteNames.getSkill).get(function(req, res) {
             // data1.foreach(element => { 
                 for(i=0; i<data1.length;i++){
                    var element = data1[i];
-                   console.log(element.username); 
                     (function defined_plus_call(element) {
                     let q =  ratings.find({ MentorID: element.username,  SkillID: element.skills }, {Rating: 1} );
                     q.exec(function(err1, property) {
                         
                         if(err1) {console.log(err1)}
                         sum = 0;
-                        console.log('statts **');
                         const ratingss = property.map(itm => itm.Rating);
                          averageRating = ratingss.reduce(function (avg, value, _, { length }) {
                             return avg + value / length;
@@ -43,7 +41,6 @@ MentorRoutes.route(RouteNames.getSkill).get(function(req, res) {
                         item = element.toObject();
                         item['avgRating'] =  averageRating;
                         dataWithRating.push(item);
-                        console.log(item);
                         // console.log('inside', count, data1.length-1);
                         if(count == data1.length-1) {
                             res.send(dataWithRating);

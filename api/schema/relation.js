@@ -13,12 +13,15 @@ let RelationSchema = new Schema(
     skillID: {
         type: String
     },
+    searchText: {
+        type: String
+    },
     date: {
       type: Date,
       required: true,
       default: Date.now
     },
-    active: {
+    status: {
         type: String
     }
   },

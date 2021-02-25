@@ -7,7 +7,9 @@ const RouteNames = {
     mydata: '/mydata',
     unregister: '/unregisterSkill',
     skillUpdate: 'skillupdate',
-    getSkill: '/getSkills'
+    getSkill: '/getSkills',
+    requestMentor: '/requestMentor',
+    updateRequest: '/updateRequest'
 };
 
 module.exports = RouteNames;

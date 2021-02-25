@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import searchService from '../services/searchService';
-
+import requestMentor from '../services/mentorReqService';
 import axios from 'axios';
 import './Search.scss';
 
@@ -26,6 +26,22 @@ class Search extends Component {
       this.setState({ result: item.data });
     });
     }
+    requestMentor = async (event) => {
+        event.preventDefault();
+        console.log(event.target);
+        let mentor = event.target.getAttribute('data-mentor');
+        let mentee = event.target.getAttribute('data-mentee');
+        let skillName = event.target.getAttribute('data-skillName');
+        let skillCode = event.target.getAttribute('data-skillCode');
+        let data = {
+            mentor: mentor,
+            mentee: mentee,
+            skillName: skillName,
+            skillCode: skillCode
+        }
+        const request = await requestMentor(data);
+
+    }
     render() {
         let mentorData;
         let self = this;
@@ -33,12 +49,21 @@ class Search extends Component {
             self.state.result.map((item) => {
             return (
                 <tr key={item.username}>
-                    <td><span class="glyphicon glyphicon-user"></span></td>
+                    <td><span className="glyphicon glyphicon-user"></span></td>
                     <td>{item.username}</td>
                     <td>{item.description ? item.description: 'Not provided'}</td>
                     <td>{item.avgRating}</td>
                     <td><a href="#">View profile</a></td>
-                    <td><a href="#">Chat <span class="glyphicon glyphicon-chat"></span></a></td>
+                    <td>
+                    <a href="#" 
+                        data-mentor={item.username} 
+                        data-mentee={this.props.name}
+                        data-skillName={this.state.search}
+                        data-skillCode={item.skills}
+                        onClick={(event) => this.requestMentor(event)}
+                    >
+                    Request Mentorship</a></td>
+                    <td><a href="#">Chat <span className="glyphicon glyphicon-chat"></span></a></td>
                 </tr>
             )
         
