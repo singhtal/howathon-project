@@ -18,7 +18,7 @@ class Mentor extends Component {
   componentDidMount() {
     setTimeout(
       function() {
-        let user = this.getCookie("loggedUser") !== undefined ? true : false;
+        let user = this.getCookie("loggedUser") !== undefined ? this.getCookie("loggedUser") : false;
         this.setState({ username: user });
       }.bind(this),
       500

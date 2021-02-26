@@ -74,4 +74,36 @@ RelationRoutes.route(RouteNames.mydata).get(function(req, res) {
         })
     });
 
+
+RelationRoutes.route(RouteNames.requestMentor).get(function(req, res) {
+
+
+  var myobj = { 
+        MentorID: req.query.mentor, 
+        MenteeID: req.query.mentee,
+        skillID: req.query.skillCode,
+        searchText: req.query.skillName,
+        status: "pending",
+        data: null
+      };
+
+  Relation.create(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+  });    
+    // res.status(200).send(
+    //     'hello'
+    // )
+});
+
+RelationRoutes.route(RouteNames.updateRequest).get(function(req, res) {
+    console.log('inside');
+    Relation.update(
+    { 'MentorID' : req.query.mentor, 'MenteeID': req.query.mentee, 'skillID': req.query.skillCode }, 
+    { $set: { 'status': req.query.status } },
+    function (err, result) {
+        if (err) throw err;
+        res.send(200);
+    })
+});
 module.exports = RelationRoutes;

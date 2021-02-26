@@ -1,0 +1,41 @@
+.newmentor {
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px 15px;
+    h4 {
+        margin-bottom: 20px;
+    }
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        padding-left: 0;
+        .glyphicon {
+            font-size: 60px;
+            background: #80808073;
+            border-radius: 50%;
+            padding: 20px;
+        }
+        p {
+            text-align: center;
+            padding-top: 10px;
+        }
+        li {
+            &:nth-child(1) {
+                .glyphicon {
+                    color: #df7272;
+                }
+            }
+            &:nth-child(2) {
+                .glyphicon {
+                    color: #978dd0;
+                }
+            }
+            &:nth-child(3) {
+                .glyphicon {
+                    color: #76ca97;
+                }
+            }
+        }
+    }
+}
