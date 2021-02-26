@@ -9,7 +9,7 @@ import Chat from './Chat';
 class Search extends Component {
     constructor(props) {
         super(props);
-        this.state = { 'search': '',  result: [], chatWindow: false };
+        this.state = { 'search': '',  result: [], chatWindow: false, chatWith: {} };
     }
     changeHandler = (event) => {
         this.setState({
@@ -43,9 +43,10 @@ class Search extends Component {
         const request = await requestMentor(data);
 
     }
-    showChatWindow = (event) => {
+    showChatWindow = (item) => {
         this.setState({
-            chatWindow: true
+            chatWindow: true,
+            chatWith: item
         });
     }
     hideChatWindow = (event) => {
@@ -75,7 +76,7 @@ class Search extends Component {
                     >
                     Request Mentorship</a></td>
                     <td><a href="#"
-                        onClick={(event) => this.showChatWindow(event)}
+                        onClick={(event) => this.showChatWindow(item)}
                     >Chat <span className="glyphicon glyphicon-chat"></span></a></td>
                 </tr>
             )
@@ -109,7 +110,7 @@ class Search extends Component {
                 </table>
                 </div>   
                 {this.state.chatWindow ? 
-                    <Chat name={this.props.name} hideChatWindow={this.hideChatWindow}  /> : null
+                    <Chat name={this.props.name} hideChatWindow={this.hideChatWindow} chatWith={this.state.chatWith}  /> : null
                 }               
             </div>                        
         )
