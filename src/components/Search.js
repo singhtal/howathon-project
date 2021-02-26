@@ -44,10 +44,16 @@ class Search extends Component {
 
     }
     showChatWindow = (item) => {
-        this.setState({
-            chatWindow: true,
+        let self = this;
+        self.setState({
+            chatWindow: false,
             chatWith: item
         });
+        setTimeout(function() {
+            self.setState({
+                chatWindow: true
+            });
+        }, 500);
     }
     hideChatWindow = (event) => {
         this.setState({
