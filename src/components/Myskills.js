@@ -71,7 +71,7 @@ class Myskills extends Component {
                     <tr key={item.fields[0].skillID}>
                         <td>{item.fields[0].skillID}</td>
                         <td>{item.fields.length} ({active} active)</td>
-                        <td>{ratingAvg}</td>
+                        <td>{ratingAvg.toFixed(2)}</td>
                         <td>{mapMentored.join(", ")}</td>
                         <td><a href="#" data-status={active} data-skill={item.fields[0].skillID}
                         onClick={(event) => this.unregister(event)}>unregister</a></td>
@@ -82,7 +82,7 @@ class Myskills extends Component {
         return (
         <div> 
             <Notification requests={this.state.fetchUser} user={this.props.name} />   
-            <div className="myskills">
+            <div className="myskills col-xs-12">
                 <h3>My Skills </h3>
                     <table className="table table-bordered">
                         <thead>

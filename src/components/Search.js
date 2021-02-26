@@ -52,7 +52,7 @@ class Search extends Component {
                     <td><span className="glyphicon glyphicon-user"></span></td>
                     <td>{item.username}</td>
                     <td>{item.description ? item.description: 'Not provided'}</td>
-                    <td>{item.avgRating}</td>
+                    <td>{item.avgRating.toFixed(2)}</td>
                     <td><a href="#">View profile</a></td>
                     <td>
                     <a href="#" 
@@ -71,34 +71,31 @@ class Search extends Component {
         
 
         return (
-            <div>
-                <div>
-                    <div className="row">
-                    <div className="col-xs-6 search-container">
-                    <form className="form-inline" onSubmit={this.submitHandler}>
-                      <div className="form-group">
-                        <label htmlFor="search">I need help on</label>
-                        <input className="form-control" id="search"
-                            placeholder="Enter Skill"
-                            type='text'
-                            onChange={this.changeHandler}
-                        />
-                    </div>
-                      <button type="submit" className="btn btn-danger">Search</button>
-                    </form>
-                    <hr />
-                    <table className="table table-striped">
-                    {mentorData.length ? 
-                      <caption>We believe the below can help you</caption> : null
-                    }
-                        <tbody>
-                            {mentorData}
-                        </tbody>
-                    </table>                    
-                    </div>                        
-                    </div>
+
+            <div className="col-xs-6">
+                <div className="search-container">
+                <form className="form-inline" onSubmit={this.submitHandler}>
+                    <div className="form-group">
+                    <label htmlFor="search">I need help on</label>
+                    <input className="form-control" id="search"
+                        placeholder="Enter Skill"
+                        type='text'
+                        onChange={this.changeHandler}
+                    />
                 </div>
-            </div>
+                    <button type="submit" className="btn btn-danger">Search</button>
+                </form>
+                <hr />
+                <table className="table table-striped">
+                {mentorData.length ? 
+                    <caption>We believe the below can help you</caption> : null
+                }
+                    <tbody>
+                        {mentorData}
+                    </tbody>
+                </table>
+                </div>                    
+            </div>                        
         )
     }
 }
