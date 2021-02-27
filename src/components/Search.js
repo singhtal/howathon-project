@@ -3,13 +3,12 @@ import searchService from '../services/searchService';
 import requestMentor from '../services/mentorReqService';
 import axios from 'axios';
 import './Search.scss';
-import Chat from './Chat';
 
 
 class Search extends Component {
     constructor(props) {
         super(props);
-        this.state = { 'search': '',  result: [], chatWindow: false, chatWith: {} };
+        this.state = { 'search': '',  result: [] };
     }
     changeHandler = (event) => {
         this.setState({
@@ -43,23 +42,7 @@ class Search extends Component {
         const request = await requestMentor(data);
 
     }
-    showChatWindow = (item) => {
-        let self = this;
-        self.setState({
-            chatWindow: false,
-            chatWith: item
-        });
-        setTimeout(function() {
-            self.setState({
-                chatWindow: true
-            });
-        }, 500);
-    }
-    hideChatWindow = (event) => {
-        this.setState({
-            chatWindow: false
-        });
-    }
+    
     render() {
         let mentorData;
         let self = this;
@@ -82,7 +65,7 @@ class Search extends Component {
                     >
                     Request Mentorship</a></td>
                     <td><a href="#"
-                        onClick={(event) => this.showChatWindow(item)}
+                        onClick={(event) => this.props.showChatWindow(item)}
                     >Chat <span className="glyphicon glyphicon-chat"></span></a></td>
                 </tr>
             )
@@ -114,10 +97,7 @@ class Search extends Component {
                         {mentorData}
                     </tbody>
                 </table>
-                </div>   
-                {this.state.chatWindow ? 
-                    <Chat name={this.props.name} hideChatWindow={this.hideChatWindow} chatWith={this.state.chatWith}  /> : null
-                }               
+                </div>              
             </div>                        
         )
     }
