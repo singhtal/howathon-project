@@ -1,17 +1,23 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
 import Myskills from "./Myskills";
 import Header from "../layout/Header";
+import Sidebar from "../layout/Sidebar";
 import Search from "./Search";
 import Newmentor from "./NewMentor";
-import { DashboardMentor, DashboardMentee } from "../services/DashboardService";
+
+import MentorsList from "./MentorsList";
+import Chat from "./Chat";
+import ReadingList from "./ReadingList";
 
 class Home extends Component {
   constructor(props) {
     super();
     document.body.classList.remove("loginPage");
     this.state = {
-      mentors: "",
-      mentees: "",
+      chatWindow: false,
+      chatWith: {},
     };
   }
 
@@ -27,15 +33,24 @@ class Home extends Component {
       }.bind(this),
       500
     );
-    DashboardMentor(this.getCookie("loggedUser")).then((mentor) => {
-      this.setState({ mentors: mentor.data });
-      console.log(mentor, "mentor");
-    });
-    DashboardMentee(this.getCookie("loggedUser")).then((mentee) => {
-      this.setState({ mentees: mentee.data });
-      console.log(mentee, "mentee");
-    });
   }
+  showChatWindow = (item) => {
+    let self = this;
+    self.setState({
+      chatWindow: false,
+      chatWith: item,
+    });
+    setTimeout(function() {
+      self.setState({
+        chatWindow: true,
+      });
+    }, 500);
+  };
+  hideChatWindow = (event) => {
+    this.setState({
+      chatWindow: false,
+    });
+  };
   render() {
     let user = this.getCookie("loggedUser");
     return (
@@ -46,69 +61,14 @@ class Home extends Component {
             {/* <Sidebar /> */}
             <div className="module-wrapper">
               <div className="dashboard">
-                <Search name={user} />
+                <Search name={user} showChatWindow={this.showChatWindow} />
                 <Newmentor />
+                <ReadingList name={user} />
               </div>
-
-              {this.state.mentees.length > 0 && (
-                <div className="mentees">
-                  <h2>Mentees</h2>
-                  <div className="blocks row">
-                    {this.state.mentees.map((mente) => (
-                      <div className="card" key={mente._id}>
-                        <div className="card-body">
-                          <h5 className="card-title">{mente.MentorID}</h5>
-                          <h6 className="card-subtitle mb-2 text-muted">
-                            Areas: Life coach
-                          </h6>
-                          <div className="card-text">
-                            <ul>
-                              <li>Mood</li>
-                              <li>Mood</li>
-                              <li>Mood</li>
-                              <li>Mood</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div className="card-footer">
-                          <p>Last updated : {mente.date}</p>
-                          <p>Last contacted : 2-feb-21</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {this.state.mentors.length > 0 && (
-                <div className="mentors">
-                  <h2>Mentors</h2>
-                  <div className="blocks row">
-                    {this.state.mentors.map((mentor) => (
-                      <div className="card" key={mentor._id}>
-                        <div className="card-body">
-                          <h5 className="card-title">{mentor.MentorID}</h5>
-                          <h6 className="card-subtitle mb-2 text-muted">
-                            Areas: Life coach
-                          </h6>
-                          <div className="card-text">
-                            <ul>
-                              <li>Mood</li>
-                              <li>Mood</li>
-                              <li>Mood</li>
-                              <li>Mood</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div className="card-footer">
-                          <p>Last updated : {mentor.date}</p>
-                          <p>Last contacted : 2-feb-21</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              <div className="row">
+              <div className="col-md-12">
+                <MentorsList user={user} />
+              </div>
+              <div className="col-md-12">
                 {user !== undefined ? <Myskills name={user} /> : null}
               </div>
             </div>
