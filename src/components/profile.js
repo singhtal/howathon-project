@@ -14,9 +14,7 @@ class Profile extends Component {
   }
   componentDidMount() {
     let user = this.props.user;
-    console.log(user)
     DashboardProfile(user).then((user) => {
-      console.log(user.data);
       this.setState({ user: user.data });
     });
   }

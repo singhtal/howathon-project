@@ -45,7 +45,6 @@ class Search extends Component {
     }
     viewProfile = (user) => {
         this.setState({showProfile: true,profileUser: user})
-        console.log(this.state);
     }
     closeProfile = () => {
         this.setState({showProfile: false})
