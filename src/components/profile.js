@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./rating.scss";
 import { DashboardProfile } from "../services/DashboardService";
-import Myskills from "./Myskills";
 import './Profile.scss';
 
 class Profile extends Component {
