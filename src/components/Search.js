@@ -57,6 +57,7 @@ class Search extends Component {
         }
     }
 
+    
     render() {
         let mentorData;
         let self = this;
@@ -79,7 +80,9 @@ class Search extends Component {
                         onClick={(event) => this.requestMentor(event)}
                     >
                     Request Mentorship</a></td>
-                    <td><a href="#">Chat <span className="glyphicon glyphicon-chat"></span></a></td>
+                    <td><a href="#"
+                        onClick={(event) => this.props.showChatWindow(item)}
+                    >Chat <span className="glyphicon glyphicon-chat"></span></a></td>
                 </tr>
             )
         
@@ -110,7 +113,7 @@ class Search extends Component {
                         {mentorData}
                     </tbody>
                 </table>
-                </div>                    
+                </div>              
             </div>                        
         )
     }
