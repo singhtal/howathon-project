@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import Myskills from './Myskills';
-import Header from '../layout/Header';
-import Sidebar from '../layout/Sidebar';
-import Search from './Search';
-import Newmentor from './NewMentor';
-import Chat from './Chat';
-import ReadingList from './ReadingList';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
+import Myskills from "./Myskills";
+import Header from "../layout/Header";
+import Sidebar from "../layout/Sidebar";
+import Search from "./Search";
+import Newmentor from "./NewMentor";
 
+import MentorsList from "./MentorsList";
+import Chat from "./Chat";
+import ReadingList from "./ReadingList";
 
 class Home extends Component {
   constructor(props) {
     super();
-    document.body.classList.remove('loginPage');
-    this.state = {chatWindow: false, chatWith: {}}
+    document.body.classList.remove("loginPage");
+    this.state = {
+      chatWindow: false,
+      chatWith: {},
+    };
   }
 
   getCookie = (name) => {
@@ -32,21 +36,21 @@ class Home extends Component {
   }
   showChatWindow = (item) => {
     let self = this;
+    self.setState({
+      chatWindow: false,
+      chatWith: item,
+    });
+    setTimeout(function() {
       self.setState({
-          chatWindow: false,
-          chatWith: item
+        chatWindow: true,
       });
-      setTimeout(function() {
-          self.setState({
-              chatWindow: true
-          });
-      }, 500);
-  }
+    }, 500);
+  };
   hideChatWindow = (event) => {
-      this.setState({
-          chatWindow: false
-      });
-  }
+    this.setState({
+      chatWindow: false,
+    });
+  };
   render() {
     let user = this.getCookie("loggedUser");
     return (
@@ -57,20 +61,18 @@ class Home extends Component {
             {/* <Sidebar /> */}
             <div className="module-wrapper">
               <div className="dashboard">
-              <Search name={user} showChatWindow={this.showChatWindow}/>
-              <Newmentor />
-              <ReadingList name={user}/>
+                <Search name={user} showChatWindow={this.showChatWindow} />
+                <Newmentor />
+                <ReadingList name={user} />
+              </div>
+              <div className="col-md-12">
+                <MentorsList user={user} />
+              </div>
+              <div className="col-md-12">
+                {user !== undefined ? <Myskills name={user} /> : null}
               </div>
             </div>
           </div>
-        <div className="row">
-            { (user !== undefined) ?
-                <Myskills name={user} /> : null
-            }
-          </div>
-          {this.state.chatWindow ? 
-              <Chat name={this.props.name} hideChatWindow={this.hideChatWindow} chatWith={this.state.chatWith}  /> : null
-          } 
         </div>
       </div>
     );
