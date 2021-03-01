@@ -67,9 +67,10 @@ class Myskills extends Component {
                 let rate = ratings.map(a => a.rating);
                 let ratingAvg = rate.reduce((a, b) => (a + b)/rate.length, 0);
                 let mapMentored = mentored.map(el => el.MenteeID); 
+                
                 return(
                     <tr key={item.fields[0].skillID}>
-                        <td>{item.fields[0].skillID}</td>
+                        <td>{item.fields[0].skillName}</td>
                         <td>{item.fields.length} ({active} active)</td>
                         <td>{ratingAvg.toFixed(2)}</td>
                         <td>{mapMentored.join(", ")}</td>

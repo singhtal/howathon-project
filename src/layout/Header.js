@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import { Redirect } from "react-router-dom";
 
 class Header extends Component {
@@ -37,11 +38,12 @@ class Header extends Component {
       <nav className="navbar">
         <div className="container-fluid">
           <div className="navbar-header">
-            <a className="navbar-brand" href="#">
-              WeLearn
-            </a>
+            <Link className="navbar-brand" to="/">We Learn</Link>
           </div>
           <ul className="nav navbar-nav navbar-right">
+          <li>
+            <Link to="/mentor">Register as mentor</Link>
+          </li>
             <li>
               <a href="#">
                 <span className="glyphicon glyphicon-user"></span> {user}

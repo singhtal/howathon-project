@@ -54,18 +54,22 @@ RelationRoutes.route(RouteNames.mydata).get(function(req, res) {
                 var myitem = element['fields'].map(async (item, index) => {      
                     let q =  ratings.find({ MentorID: item['MentorID'], MenteeID: item['MenteeID'], SkillID: item['skillID'] }, {Rating: 1} );
                     await  q.exec(function(err1, property) {
-                        //if (err1) { res.send(err1) }
                         item['rating'] = property[0] ? property[0]['Rating']: null;
-                        //console.log(item);
+                        
+                        (function defined_plus_call(item) {
+                         skills.find({_id: item.skillID}).exec(function(err2, prop2) {
+                            if(err2) console.log(err2);
+                            item['skillName'] = prop2[0] ? prop2[0]['name']: null;
+                            //item['skillName'] = prop2[0].name; 
+                         })
+                         }(item));
+
                         matrix[ind] = [];
-                        console.log('running');
-                        console.log(ind, index, results.length, element['fields'].length);
                         matrix[ind][index] = item;
-                        //console.log(matrix);
                         if((ind == results.length - 1) && (index == element['fields'].length - 1)) {
                             setTimeout(function () {
                                 res.json(results);
-                            }, 200);
+                            }, 2000);
                         }
                         return item;
                     });
@@ -89,7 +93,6 @@ RelationRoutes.route(RouteNames.requestMentor).get(function(req, res) {
 
   Relation.create(myobj, function(err, res) {
     if (err) throw err;
-    console.log("1 document inserted");
   });    
     // res.status(200).send(
     //     'hello'
@@ -97,7 +100,6 @@ RelationRoutes.route(RouteNames.requestMentor).get(function(req, res) {
 });
 
 RelationRoutes.route(RouteNames.updateRequest).get(function(req, res) {
-    console.log('inside');
     Relation.update(
     { 'MentorID' : req.query.mentor, 'MenteeID': req.query.mentee, 'skillID': req.query.skillCode }, 
     { $set: { 'status': req.query.status } },

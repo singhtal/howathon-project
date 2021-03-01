@@ -66,10 +66,10 @@ class Home extends Component {
                 <ReadingList name={user} />
               </div>
               <div className="col-md-12">
-                <MentorsList user={user} />
+                {user !== undefined ? <Myskills name={user} /> : null}
               </div>
               <div className="col-md-12">
-                {user !== undefined ? <Myskills name={user} /> : null}
+                <MentorsList user={user} />
               </div>
             </div>
           </div>
