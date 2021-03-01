@@ -64,7 +64,7 @@ class Mentor extends Component {
     return (
       <div>
         <Header />
-        <div className="containernavbar-brand">
+        <div className="container">
           <div className="row">
             <div className="module-wrapper">
               <div className="mentor-form">
