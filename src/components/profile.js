@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./rating.scss";
 import { DashboardProfile } from "../services/DashboardService";
-import './Profile.scss';
+import "./Profile.scss";
+import user from "../assets/img/user.png";
+import close from "../assets/img/close.svg";
 
 class Profile extends Component {
   constructor(props) {
@@ -15,6 +17,12 @@ class Profile extends Component {
   componentDidMount() {
     let user = this.props.user;
     DashboardProfile(user).then((user) => {
+      console.log(user);
+      if (user.length === 0) {
+        this.setState({
+          message: "There is some error please contact administrator",
+        });
+      }
       this.setState({ user: user.data });
     });
   }
@@ -23,14 +31,23 @@ class Profile extends Component {
       <div className="profile">
         {this.state.user && (
           <div className="profile-wrapper">
-              <button type="button" onClick = {this.props.closeHandler} className="profile-close">x</button>
+            <button
+              type="button"
+              onClick={this.props.closeHandler}
+              className="profile-close"
+            >
+              <img src={close} alt="name" />
+            </button>
+            {this.state.message}
             <div className="profile-top">
               <div className="profile-pic">
-                <img src="assets/img/user.png" alt="name" />
+                <img src={user} alt="name" />
               </div>
-              <label>
-                {this.state.user.firstName} {this.state.user.lastName}
-              </label>
+              <div className="profile-desc">
+                <label>
+                  {this.state.user.firstName} {this.state.user.lastName}
+                </label>
+              </div>
             </div>
             <div className="profile-skills">
               <div className="row">
@@ -38,15 +55,13 @@ class Profile extends Component {
                   {this.state.user.skills.length > 0 ? (
                     <table>
                       <tr>
-                        <th>Skill Name</th>
-                        <th>Ratings</th>
+                        <th>Area of expertise</th>
                       </tr>
                       <tbody>
                         {this.state.user.skills.map((skill) => {
                           return (
                             <tr key={skill._id}>
                               <td>{skill.skills}</td>
-                              <td>{skill.rating}</td>
                             </tr>
                           );
                         })}

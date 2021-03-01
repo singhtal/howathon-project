@@ -24,6 +24,7 @@ class Search extends Component {
     };
     // const searchResult = await searchService(data);
     searchService(data).then((item) => {
+        console.log(item.data)
       this.setState({ result: item.data });
     });
     }

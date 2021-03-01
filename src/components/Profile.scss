@@ -16,6 +16,7 @@
     z-index: 1;
   }
   &-close {
+    width: 15px;
     position: absolute;
     top: 5px;
     border: 0;
@@ -44,12 +45,14 @@
   }
   &-pic {
     width: 100px;
-    height: 100px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 1px solid #dadada;
     display: inline-block;
     vertical-align: middle;
     margin-right: 30px;
+  }
+  &-desc {
+      display: inline-block;
+      label{
+          display: block;
+      }
   }
 }
