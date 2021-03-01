@@ -37,6 +37,13 @@ class ReadingList extends Component {
                                     <Rating value={4}></Rating>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Fundamentals of AWS</td>
+                                <td>Completed</td>
+                                <td>You rated
+                                    <Rating value={3}></Rating>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>              
