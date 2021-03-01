@@ -15,7 +15,7 @@ class Myskills extends Component {
     }
     getUser() {
          var name = this.props.name;
-        axios.get(`http://localhost:4000/relation/mydata?name=${name}`)
+        axios.get(`http://localhost:5000/relation/mydata?name=${name}`)
         .then((response) => {
             this.setState({
                 fetchUser: response.data
@@ -40,7 +40,7 @@ class Myskills extends Component {
         }
         var skill = obj.getAttribute('data-skill');
 
-        axios.get(`http://localhost:4000/mentor/unregisterSkill?name=${name}&skill=${skill}`)
+        axios.get(`http://localhost:5000/mentor/unregisterSkill?name=${name}&skill=${skill}`)
         .then((response) => {
              self.getUser();
         })
