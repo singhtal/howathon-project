@@ -3,12 +3,13 @@ import searchService from '../services/searchService';
 import requestMentor from '../services/mentorReqService';
 import axios from 'axios';
 import './Search.scss';
+import Profile from "./profile";
 
 
 class Search extends Component {
     constructor(props) {
         super(props);
-        this.state = { 'search': '',  result: [] };
+        this.state = { 'search': '',  result: [], profileUser: '',showProfile: false };
     }
     changeHandler = (event) => {
         this.setState({
@@ -23,6 +24,7 @@ class Search extends Component {
     };
     // const searchResult = await searchService(data);
     searchService(data).then((item) => {
+        console.log(item.data)
       this.setState({ result: item.data });
     });
     }
@@ -41,6 +43,12 @@ class Search extends Component {
         }
         const request = await requestMentor(data);
 
+    }
+    viewProfile = (user) => {
+        this.setState({showProfile: true,profileUser: user})
+    }
+    closeProfile = () => {
+        this.setState({showProfile: false})
     }
     dynamicSort = (property) => {
     var sortOrder = 1;
@@ -70,7 +78,8 @@ class Search extends Component {
                     <td>{item.username}</td>
                     <td>{item.description ? item.description: 'Not provided'}</td>
                     <td>{item.avgRating.toFixed(2)}</td>
-                    <td><a href="#">View profile</a></td>
+                    <td><a href="#"
+                        onClick={(event) => this.viewProfile(item.username)}>View profile</a></td>
                     <td>
                     <a href="#" 
                         data-mentor={item.username} 
@@ -113,7 +122,10 @@ class Search extends Component {
                         {mentorData}
                     </tbody>
                 </table>
-                </div>              
+                </div>
+                {this.state.showProfile &&
+                    <Profile user={this.state.profileUser} closeHandler= {this.closeProfile} />
+                }
             </div>                        
         )
     }

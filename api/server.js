@@ -11,6 +11,7 @@ const SkillUpdateRoutes = require('./routes/skillUpdateRoute');
 const SkillsRoutes = require('./routes/skillRoute');
 const relationRoutes = require('./relationRoute');
 const ratingRoutes = require('./ratingRoute');
+const dashboardRoutes = require('./routes/dashboard');
 
 
 mongoose.Promise = global.Promise;
@@ -28,5 +29,6 @@ app.use("/mentor", mentorRoutes);
 app.use("/updateskill", SkillUpdateRoutes);
 app.use("/skills", SkillsRoutes);
 app.use("/rating", ratingRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 module.exports = app

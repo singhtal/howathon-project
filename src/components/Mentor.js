@@ -46,16 +46,11 @@ class Mentor extends Component {
       volunteer: this.state.registeras ? true : false,
     };
     const result = await UpdateSkill(data);
-    if (result !== 200) {
-      this.setState({
-        error: true,
-        register: false,
-      });
-    } else
-      this.setState({
-        register: true,
-        error: false,
-      });
+    if (result !== 201) {
+      console.log('error')
+    } else {
+      document.getElementById('skillform').reset();
+    }
     //document.cookie = `loggedUser=${this.state.user_name};max-age=604800;`;
   };
   handleOnSearch = (string, results) => {
@@ -75,7 +70,7 @@ class Mentor extends Component {
             <div className="module-wrapper">
               <div className="mentor-form">
                 <h2>Update Skills</h2>
-                <form onSubmit={this.handleSubmit} method="post">
+                <form onSubmit={this.handleSubmit} method="post" id="skillform">
                   <div className="form-group searchinput">
                     <label htmlFor="skills" className="form-label">
                       Search skills
