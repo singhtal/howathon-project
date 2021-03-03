@@ -7,6 +7,7 @@ let Mentor = require('./schema/mentor');
 let Relation = require('./schema/relation');
 let RouteNames = require("./constants/constants");
 let ratings = require("./schema/rating");
+let Courses = require('./schema/courses');
 
 //NOTE  Registration route
 // Get allData
@@ -17,7 +18,7 @@ MentorRoutes.route(RouteNames.getSkill).get(function(req, res) {
         let response = data.map(item => {
             return item['_id']
         });
-
+        var fullData = [];
         var dataWithRating = [];
 
         mentorskill.find({ skills: { $in: response }}, (err1, data1) => {
@@ -43,7 +44,18 @@ MentorRoutes.route(RouteNames.getSkill).get(function(req, res) {
                         dataWithRating.push(item);
                         // console.log('inside', count, data1.length-1);
                         if(count == data1.length-1) {
-                            res.send(dataWithRating);
+                            console.log('*************************');
+                                                        // console.log(fullData);
+                            /* get courses */
+
+                            Courses.find({ 'skillId' : "60336bb21b394166402ea00f" }, function(err, results) {
+                                if (err) console.log(err);
+                                dataWithRating.push(results);
+                                res.send(dataWithRating);
+                            });
+
+                            /* get courses ends */
+                            // res.send(dataWithRating);
                         }
                         count++;   
                     });

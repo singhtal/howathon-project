@@ -24,8 +24,8 @@ class Search extends Component {
     };
     // const searchResult = await searchService(data);
     searchService(data).then((item) => {
-        console.log(item.data)
-      this.setState({ result: item.data });
+    //   console.log(item.data)
+       this.setState({ result: item.data });
     });
     }
     requestMentor = async (event) => {
@@ -67,35 +67,63 @@ class Search extends Component {
 
     
     render() {
-        let mentorData;
+        let mentorData, courseData;
         let self = this;
         let sortedArray = self.state.result.sort(self.dynamicSort("-avgRating"));
-            mentorData = 
-            sortedArray.slice(0, 5).map((item) => {
+        let filterCourses = self.state.result.filter((item) => {
+            return Array.isArray(item)
+        });
+
+        mentorData = 
+        sortedArray.slice(0, 5).map((item) => {
+        return (
+            <tr key={item.username}>
+                <td><span className="glyphicon glyphicon-user"></span></td>
+                <td>{item.username}</td>
+                <td>{item.description ? item.description: 'Not provided'}</td>
+                <td>{item.avgRating.toFixed(2)}</td>
+                <td><a href="#"
+                    onClick={(event) => this.viewProfile(item.username)}>View profile</a></td>
+                <td>
+                <a href="#" 
+                    data-mentor={item.username} 
+                    data-mentee={this.props.name}
+                    data-skillName={this.state.search}
+                    data-skillCode={item.skills}
+                    onClick={(event) => this.requestMentor(event)}
+                >
+                Request Mentorship</a></td>
+                <td><a href="#"
+                    onClick={(event) => this.props.showChatWindow(item)}
+                >Chat <span className="glyphicon glyphicon-chat"></span></a></td>
+            </tr>
+        )
+        })
+
+        courseData = 
+        filterCourses.map((item) => {
+            console.log(item);
             return (
-                <tr key={item.username}>
-                    <td><span className="glyphicon glyphicon-user"></span></td>
-                    <td>{item.username}</td>
-                    <td>{item.description ? item.description: 'Not provided'}</td>
-                    <td>{item.avgRating.toFixed(2)}</td>
-                    <td><a href="#"
-                        onClick={(event) => this.viewProfile(item.username)}>View profile</a></td>
-                    <td>
-                    <a href="#" 
-                        data-mentor={item.username} 
-                        data-mentee={this.props.name}
-                        data-skillName={this.state.search}
-                        data-skillCode={item.skills}
-                        onClick={(event) => this.requestMentor(event)}
-                    >
-                    Request Mentorship</a></td>
-                    <td><a href="#"
-                        onClick={(event) => this.props.showChatWindow(item)}
-                    >Chat <span className="glyphicon glyphicon-chat"></span></a></td>
+                <tr>
+                    <td>{item.name}</td>
+                    <td>{item.url}</td>
+                    <td>{item.rating}</td>
                 </tr>
             )
-        
+        });
+
+        courseData = filterCourses.map(item =>
+            item.map((subcategory, i) => {
+                return (
+                    <tr>
+                        <td>{subcategory.name}</td>
+                        <td><a href="{subcategory.url}" target="_blank">{subcategory.url}</a></td>
+                        <td>{subcategory.rating}</td>
+                    </tr>
+                )
             })
+        );
+
         
 
         return (
@@ -120,6 +148,14 @@ class Search extends Component {
                 }
                     <tbody>
                         {mentorData}
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                {courseData.length ? 
+                    <caption>Recommended courses</caption>: null
+                }    
+                    <tbody>
+                        {courseData}
                     </tbody>
                 </table>
                 </div>

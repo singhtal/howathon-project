@@ -14,6 +14,7 @@ const ratingRoutes = require('./ratingRoute');
 const dashboardRoutes = require('./routes/dashboard');
 
 
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true, useUnifiedTopology: true }).then(
     () => { console.log('Database is connected') },
@@ -30,6 +31,7 @@ app.use("/updateskill", SkillUpdateRoutes);
 app.use("/skills", SkillsRoutes);
 app.use("/rating", ratingRoutes);
 app.use("/dashboard", dashboardRoutes);
+
 
 // if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
