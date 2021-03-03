@@ -13,6 +13,20 @@ RelationRoutes.route(RouteNames.mydata).get(function(req, res) {
 
     // Relation.find((err, data) => err ? res.status(400).send("Error occured") : res.json(data));
 
+    // Relation.aggregate([
+    //     { "$match": { "MentorID": "tal01" } },
+    //     { "$unwind": "$tal.skills" },
+    //     {
+    //         "$lookup": {
+    //             "from": "skills",
+    //             "localField": "id",
+    //             "foreignField": "skillID",
+    //             "as": "kuchbhi"
+    //         }
+    //     }
+    // ]).exec(function(err, results){
+    //     console.log(results);
+    // })
     let name =  req.query.name;
     Relation.aggregate([{
         $match: {
@@ -66,6 +80,7 @@ RelationRoutes.route(RouteNames.mydata).get(function(req, res) {
 
 
 RelationRoutes.route(RouteNames.requestMentor).get(function(req, res) {
+
 
   var myobj = { 
         MentorID: req.query.mentor, 
