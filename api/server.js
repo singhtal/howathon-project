@@ -11,6 +11,7 @@ const SkillUpdateRoutes = require('./routes/skillUpdateRoute');
 const SkillsRoutes = require('./routes/skillRoute');
 const relationRoutes = require('./relationRoute');
 const ratingRoutes = require('./ratingRoute');
+const coursesRoutes = require('./coursesRoute');
 const dashboardRoutes = require('./routes/dashboard');
 
 
@@ -30,6 +31,7 @@ app.use("/updateskill", SkillUpdateRoutes);
 app.use("/skills", SkillsRoutes);
 app.use("/rating", ratingRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/courses", coursesRoutes);
 
 // if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
