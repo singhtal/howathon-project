@@ -81,7 +81,7 @@ class Search extends Component {
                 <td><span className="glyphicon glyphicon-user"></span></td>
                 <td>{item.username}</td>
                 <td>{item.description ? item.description: 'Not provided'}</td>
-                <td>{item.avgRating.toFixed(2)}</td>
+                <td>{item.avgRating ? item.avgRating.toFixed(2): ''}</td>
                 <td><a href="#"
                     onClick={(event) => this.viewProfile(item.username)}>View profile</a></td>
                 <td>
