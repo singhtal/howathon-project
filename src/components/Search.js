@@ -77,11 +77,12 @@ class Search extends Component {
         mentorData = 
         sortedArray.slice(0, 5).map((item) => {
             if(!item.username || item.username.length < 2) { return false }
+            console.log(item);
         return (
             <tr key={item.username}>
                 <td><span className="glyphicon glyphicon-user"></span></td>
                 <td>{item.username}</td>
-                <td>{item.description ? item.description: 'Not provided'}</td>
+                <td>{item.certifications ? item.certifications: 'Not available'}</td>
                 <td>{item.avgRating ? item.avgRating.toFixed(2): ''}</td>
                 <td><a href="#"
                     onClick={(event) => this.viewProfile(item.username)}>View profile</a></td>
@@ -152,7 +153,7 @@ class Search extends Component {
                         <tr>
                             <th></th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Cerification</th>
                             <th>Rating</th>
                             <th>Profile</th>
                             <th>Request</th>
