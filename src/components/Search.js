@@ -76,6 +76,7 @@ class Search extends Component {
 
         mentorData = 
         sortedArray.slice(0, 5).map((item) => {
+            if(!item.username || item.username.length < 2) { return false }
         return (
             <tr key={item.username}>
                 <td><span className="glyphicon glyphicon-user"></span></td>
@@ -117,7 +118,7 @@ class Search extends Component {
                 return (
                     <tr>
                         <td>{subcategory.name}</td>
-                        <td><a href="{subcategory.url}" target="_blank">{subcategory.url}</a></td>
+                        <td><a href={subcategory.url} target="_blank">{subcategory.url}</a></td>
                         <td>{subcategory.rating}</td>
                     </tr>
                 )
@@ -146,6 +147,20 @@ class Search extends Component {
                 {mentorData.length ? 
                     <caption>We believe the below can help you</caption> : null
                 }
+                {mentorData.length ? 
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Rating</th>
+                            <th>Profile</th>
+                            <th>Request</th>
+                            <th>Connect</th>
+                        </tr>
+                    </thead> : null
+                }
+
                     <tbody>
                         {mentorData}
                     </tbody>
@@ -153,7 +168,17 @@ class Search extends Component {
                 <table class="table table-striped">
                 {courseData.length ? 
                     <caption>Recommended courses</caption>: null
-                }    
+                }
+
+                {courseData.length ? 
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Url</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>    : null
+                }
                     <tbody>
                         {courseData}
                     </tbody>

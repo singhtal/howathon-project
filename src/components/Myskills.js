@@ -68,6 +68,8 @@ class Myskills extends Component {
                 let ratingAvg = rate.reduce((a, b) => (a + b)/rate.length, 0);
                 let mapMentored = mentored.map(el => el.MenteeID); 
                 
+                if(mapMentored.length == 0) return false;
+                
                 return(
                     <tr key={item.fields[0].skillID}>
                         <td>{item.fields[0].skillName}</td>
@@ -77,6 +79,7 @@ class Myskills extends Component {
                         <td><a href="#" data-status={active} data-skill={item.fields[0].skillID}
                         onClick={(event) => this.unregister(event)}>unregister</a></td>
                     </tr>
+                    
                 )
             });         
         }
