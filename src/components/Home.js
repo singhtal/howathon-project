@@ -74,6 +74,8 @@ class Home extends Component {
             </div>
           </div>
         </div>
+        {this.state.chatWindow ? <Chat hideChatWindow={this.hideChatWindow} chatWith={this.state.chatWith}></Chat> : null}
+        
       </div>
     );
   }
