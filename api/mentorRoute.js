@@ -48,7 +48,7 @@ MentorRoutes.route(RouteNames.getSkill).get(function(req, res) {
                                                         // console.log(fullData);
                             /* get courses */
 
-                            Courses.find({ 'skillId' : "60336bb21b394166402ea00f" }, function(err, results) {
+                            Courses.find({ 'skillId' : item.skills }, function(err, results) {
                                 if (err) console.log(err);
                                 dataWithRating.push(results);
                                 res.send(dataWithRating);
