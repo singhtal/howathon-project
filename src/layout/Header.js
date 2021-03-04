@@ -42,7 +42,7 @@ class Header extends Component {
           </div>
           <ul className="nav navbar-nav navbar-right">
           <li>
-            <Link to="/mentor">Register as mentor</Link>
+            <Link to="/mentor">Volunteer as mentor</Link>
           </li>
             <li>
               <a href="#">

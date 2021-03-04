@@ -10,15 +10,15 @@ class NewMentor extends Component {
                     <ul className="suggestion-list">
                         <li>
                             <span className="glyphicon glyphicon-user"></span>
-                            <p>Adam Gilchrist</p>
+                            <p>Mansi Sharma</p>
                         </li>
                         <li>
                             <span className="glyphicon glyphicon-user"></span>
-                            <p>Matthew Hayden</p>
+                            <p>Kapil Chopra</p>
                         </li>
                         <li>
                             <span className="glyphicon glyphicon-user"></span>
-                            <p>Shane Warne</p>
+                            <p>Pooja Singh</p>
                         </li>
                     </ul>
                 </div>
